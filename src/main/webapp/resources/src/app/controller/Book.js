@@ -5,10 +5,12 @@ Ext.define('Books.controller.Book', {
 		'BookList', 'BookAddForm', 'BookEditForm', 'Report'
 	],
 	stores: [
-		'Books'
+		'Books',
+		'Authors'
 	],
 	models: [
-		'Book'
+		'Book',
+		'Author'
 	],
 
 	init: function() {

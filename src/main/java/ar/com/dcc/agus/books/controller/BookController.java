@@ -1,8 +1,10 @@
 package ar.com.dcc.agus.books.controller;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ar.com.dcc.agus.books.model.Author;
 import ar.com.dcc.agus.books.model.Book;
 import ar.com.dcc.agus.books.service.BookService;
 
@@ -59,7 +62,20 @@ public class BookController {
 	@ResponseBody
 	public void updateBooks(@RequestBody Book book)
 	{
-		bookService.updateBook(book);		
+		bookService.updateBook(book);	
 	}	
 	
+	@ResponseBody
+	@RequestMapping (value = "book/loadAuthors", produces = "application/json", method = RequestMethod.GET)
+	public Map<String, Set<Author>> loadAuthors()
+	{
+		Set<Author> authorsSet = new HashSet<>();
+		Map<String, Set<Author>> authors = new HashMap<>();
+		List<Book> bookList = bookService.listBooks();
+		for(Book b : bookList)
+			authorsSet.add(new Author(b.getAuthor()));			
+		authors.put("authors", authorsSet);
+		return authors;
+	}
+
 }

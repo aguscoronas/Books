@@ -2,7 +2,7 @@ Ext.define('Books.view.BookAddForm', {
 	extend: 'Ext.window.Window',
 	alias: 'widget.bookaddform',
 	title: 'Agregar Libro',
-	width: 350,
+	width: 800,
 	layout: 'fit',
 	resizable: false,
 	closeAction: 'hide',
@@ -27,15 +27,20 @@ Ext.define('Books.view.BookAddForm', {
 			name: 'title',
 			fieldLabel: 'Titulo del libro'
 		}, {
+			xtype: 'combobox',
+			store: 'Authors',
 			name: 'author',
-			fieldLabel: 'Nombre del autor'
+			fieldLabel: 'Nombre del autor',
+			displayField: 'name',
+			valueField: 'name'
 		}, {
 			name: 'price',
 			fieldLabel: 'Precio'
 		}, {
 			name: 'quantity',
 			fieldLabel: 'Cantidad'
-		}]
+		}
+		]
 	}],
 	buttons: [{
 		text: 'OK',
