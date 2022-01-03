@@ -27,6 +27,9 @@ Ext.define('Books.controller.Book', {
 			'booklist > toolbar > button[action=report]': {
 				click: this.showReportForm
 			},
+			'actioncolumn': {
+             itemClick: this.onActionColumnItemClick
+	         },
 			'bookaddform button[action=add]': {
 				click: this.doAddBook
 			},
@@ -86,6 +89,9 @@ Ext.define('Books.controller.Book', {
 			}
 		});
 		win.close();
+	},
+	onActionColumnItemClick : function(view, rowIndex, colIndex, item, e, record, row) {
+    alert("Libro " + record.get('title') + " escrito por " + record.get('author'));
 	},
 	deleteBook: function(button) {
 		var toolbar = button.up('toolbar'),

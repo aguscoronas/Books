@@ -33,7 +33,18 @@ Ext.define('Books.view.BookList', {
 			{ header: 'Titulo', dataIndex: 'title', flex: 1 },
 			{ header: 'Autor', dataIndex: 'author', flex: 1 },
 			{ header: 'Precio', dataIndex: 'price', flex: 1 },
-			{ header: 'Cantidad', dataIndex: 'quantity', flex: 1, sortable: false }
+			{ header: 'Cantidad', dataIndex: 'quantity', flex: 1, sortable: false },
+			{ text: 'Reporte',
+			  xtype: 'actioncolumn',
+			  items: [{
+					xtype: 'button',
+					action: 'report',
+					scale: 'small',
+					icon: 'resources/src/image/report.png',
+					handler: function(view, rowIndex, colIndex, item, e, record, row) {
+     				   		this.fireEvent('itemClick', view, rowIndex, colIndex, item, e, record, row, 'report');
+    						}							
+					}]}
 		];
 		this.callParent(arguments);
 	}
